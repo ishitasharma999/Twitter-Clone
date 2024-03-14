@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twitter Login</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1da1f2;
+    }
+
+    .container {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    .twitter-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .twitter-logo {
+      width: 100px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 20px;
+      background-color: #00aced;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #00aced;
+    }
+
+    a {
+      color: #00aced;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .message {
+  text-align: center;
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f0f8ff;
+  color: #333;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 300;
+  color:#00aced ;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="twitter-header">
+      <img class="twitter-logo" src="./images/twitter2.jpg" alt="Twitter Logo">
+      <h1>Twitter Login</h1>
+    </div>
+    <p class="message"><%= message %></p>   
+    <!-- this p tag displays the message passed as a parameter in res.render -->
+    <form action="/home" method="post"> 
+      <!-- when the form is submitted, the data will be sent to the /home endpoint on the server -->
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username" required> 
+      
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" required>
+
+      <button type="submit">Login</button>
+
+      <div><a href="/create">Don't have an account?</a></div>
+      <!-- takes us to url /create on clicking this anchor. iss url pe konsa view khulna is defined in index.js of routes -->
+    </form>
+  </div>
+</body>
+</html>
+

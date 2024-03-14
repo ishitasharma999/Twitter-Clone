@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <form id="empForm">
+      Empid<input type="text" name="empid" id="empid">
+      <button type="button" onclick="showEmp(event)">Find Employee</button> <!-- Pass event parameter -->
+      <p id='empdata'></p>
+      <ol id='show'>
+      </ol>
+      <button onclick="showAll(event)">Show All Employees</button> <!-- Pass event parameter -->
+    </form>
+
+    <div id="employeeDetails"></div>
+
+    <script>
+      function showEmp(event) {
+        event.preventDefault();
+        let textEl = document.getElementById("empid");
+        let empid=textEl.value;
+        let url = "/employee/"+empid;
+        fetch(url).then((res)=> res.json()).then(res=>{
+          let pEl=document.getElementById('empdata');
+          pEl.innerHTML=JSON.stringify(res);
+        });
+      }
+      function showAll(event) {
+        event.preventDefault();
+        let url = "/employee/";
+        fetch(url)
+          .then((res) => res.json()) // Parse the response as JSON
+          .then((res) => { // <-- Here, `res` is the parsed JSON response
+            let str="";
+            for(let el of res){ // <-- Attempting to iterate over `res`
+              str+= "<li>"+JSON.stringify(el) +"</li>";
+            }
+            let pEl=document.getElementById('show');
+            pEl.innerHTML=str;
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }
+    </script>
+  </body>
+</html>

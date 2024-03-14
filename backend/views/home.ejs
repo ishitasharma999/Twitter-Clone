@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f8fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1da1f2;
+            margin-top: 20px;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            border-radius: 50%;
+            max-width: 200px;
+            height: auto;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        textarea {
+            width: calc(100% - 24px);
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+
+        #side {
+            text-align: right;
+            margin-top: 5px;
+            font-size: small;
+            color: #cccccce2;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #1da1f2;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0d8bf0;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #1da1f2;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Twitter <%= username %></h1>
+    <img src="<%= picture %>" alt="User Picture">
+    <form action="/tweet" method="post" enctype="multipart/form-data">
+        <textarea required id="tweettext" placeholder="What's happening?!" name="tweettext" rows="5" cols="50"></textarea>
+        <div id="side"><span id="charCount">280</span> characters remaining</div>
+        <br/>
+        Media: <input type="file" id="pictureinput" name="media" accept="image/*,video/*">        <br/>
+        <input type="submit" value="Tweet">
+    </form>
+    <div><a href="/logout">Logout</a></div>
+    <div><a href="/users/updateProfile">Update Account</a></div>
+    <script>
+        document.getElementById('tweettext').addEventListener('input', (event) => {
+            var maxLength = 280;
+            var currentLength = event.target.value.length;
+            var charactersRemaining = maxLength - currentLength;
+            var charCountElement = document.getElementById('charCount');
+
+            charCountElement.textContent = charactersRemaining;
+
+            if (currentLength > maxLength) {
+                event.target.value = event.target.value.slice(0, maxLength);
+                charCountElement.textContent = "0";
+            }
+        })
+    </script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to twitter %=username%</h1>
+</body>
+</html> -->

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f8fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="file"],
+        textarea {
+            width: calc(100% - 24px);
+            padding: 10px;
+            margin: 8px 0;
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"] {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #1da1f2;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0d8bf0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #1da1f2;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        .twitter-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .twitter-logo {
+            width: 40px;
+            vertical-align: middle;
+        }
+
+        .twitter-title {
+            color: #1da1f2;
+            display: inline-block;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="twitter-header">
+        <img class="twitter-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOmt5BJKehR4kQjKVOVtG-pF_qqPYjrOJfjg&usqp=CAU" alt="Twitter Logo">
+        <h1 class="twitter-title">Twitter</h1>
+    </div>
+    <form action="/users/update" method="post" enctype="multipart/form-data">
+        <label for="username">Username:</label>
+        <input required type="text" name="username" placeholder="Username" id="username" value=<%= username %> readonly> <br/>
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="Password" id="password"> <br/>
+        <label>Gender:</label>
+        <label for="male">Male  &nbsp;&nbsp;&nbsp;   
+        <input <%= (gender === 'M') ? 'checked' : '' %> required type="radio" name="gender" value='M' id="male">
+        </label>
+        <label for="female">Female 
+        <input <%= (gender === 'F') ? 'checked' : '' %> required type="radio" name="gender" value="F" id="female">
+        </label>
+        <br/> 
+        <label for="mobile">Mobile:</label>
+        <input type="text" name="mobile" placeholder="Mobile" id="mobile" value=<%= mobile %>> <br/>
+        <label for="email">Email:</label>
+        <input type="text" name="email" placeholder="Email" id="email" value=<%= email %> > <br/>
+        <label for="pictureinput">Picture:</label>
+        <input type="file" id="pictureinput" name="picture" accept="image/*"> <br/>
+        <label for="profiletext">Twitter bio: </label>
+        <textarea id="profiletext" name="profiletext" rows="5" cols="50" style="vertical-align: top;" placeholder="Write something in your Bio">
+            <%= profiletext || 'Default Profile Text' %>
+        </textarea>
+        <input type="submit" value="Update Account">
+    </form>
+    <a href="/users">Go to Home</a>
+</body>
+</html>
